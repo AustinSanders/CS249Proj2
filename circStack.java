@@ -1,15 +1,15 @@
-
-public class circStack {
-	private Node<Integer> current;
+//a stack implemented as a circular singularly linked list
+public class CircStack<T1> {
+	private Node<T1> current;
 	public int size;
-	
-	public circStack(){
+
+	public CircStack(){
 		current = null;
 		size = 0;
 	}
-	
-	public void push(Integer data){
-		Node<Integer> newNode = new Node<Integer>(data);
+
+	public void push(T1 data){
+		Node<T1> newNode = new Node<T1>(data);
 		if (size ==0){
 			current = newNode;
 			current.next = newNode;
@@ -20,30 +20,30 @@ public class circStack {
 		}
 		size++;
 	}
-	
-	public int pop(){
+
+	public T1 pop(){
 		if (size ==0){
 			System.out.println("There are no elements in the list");
-			return -9999999;
+			return null;
 		}
-		Node<Integer> temp = current;
+		Node<T1> temp = current;
 		while (current.next != temp){
 			current = current.next;
 		}
 		current.next = temp.next;
 		temp.next = null;
 		size--;
-		return (int)temp.data;
+		return (T1)temp.data;
 	}
-	
+
 	public void displayStack(){
 		for (int i = 0; i<this.size; i++){
 			current.displayNode();
-			Node temp = current;
+			Node<T1> temp = current;
 			while (current.next !=temp){
 				current = current.next;
 			}
 		}
 	}
-	
+
 }

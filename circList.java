@@ -1,7 +1,7 @@
 
 public class circList<T1> {
 	public Node<T1> current;
-	public int size;
+	private int size;
 	
 	public circList(){
 		current = null;
@@ -18,6 +18,7 @@ public class circList<T1> {
 			current.next = newNode;
 			current = current.next;
 		}
+		size++;
 	}
 	
 	public T1 removeCurrent(){
@@ -26,11 +27,20 @@ public class circList<T1> {
 			while (current.next != temp){
 				current = current.next;
 			}
+			current.next = temp.next;
+			temp.next=null;
+			current = current.next;
+			size--;
 			return temp.data;
 		}else{
 			System.out.println("There is nothing in the list");
 			return null;
 		}
+		
+	}
+	
+	public int getSize(){
+		return this.size;
 	}
 	
 }
